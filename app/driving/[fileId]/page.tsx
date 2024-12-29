@@ -5,6 +5,7 @@ import TripReplay from '@/components/TripReplay';
 import { DrivingData } from '@/lib/validation';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
+import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 
 interface Props {
   params: {
@@ -27,7 +28,12 @@ export default function DrivingAnalysisPage({ params }: Props) {
       <div className="max-w-7xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 space-y-4 sm:space-y-0">
           <div>
-            <h1 className="text-3xl font-bold text-red-500">{file.name}</h1>
+            <div className="flex items-center space-x-4">
+              <Link href="/" className="text-gray-400 hover:text-gray-200 transition-colors">
+                <ArrowLeftIcon className="h-6 w-6" />
+              </Link>
+              <h1 className="text-3xl font-bold text-red-500">{file.name}</h1>
+            </div>
             <p className="text-gray-400 mt-2">
               Uploaded on {new Date(file.uploadDate).toLocaleString()}
             </p>

@@ -6,6 +6,8 @@ import type { DrivingData } from '@/lib/validation';
 import { calculateComparison } from '@/lib/comparison';
 import ComparisonInsights from '@/components/ComparisonInsights';
 import Map from '@/components/Map';
+import Link from 'next/link';
+import { ArrowLeftIcon } from '@heroicons/react/24/solid';
 
 interface FileRecord {
   id: number;
@@ -99,7 +101,12 @@ export default function ComparePage({ params }: ComparePageProps) {
   return (
     <main className="min-h-screen bg-gray-900 text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <h1 className="text-3xl font-bold mb-8 text-red-500">Trip Comparison</h1>
+        <div className="flex items-center space-x-4 mb-8">
+          <Link href={`/driving/${params.fileId}`} className="text-gray-400 hover:text-gray-200 transition-colors">
+            <ArrowLeftIcon className="h-6 w-6" />
+          </Link>
+          <h1 className="text-3xl font-bold text-red-500">Trip Comparison</h1>
+        </div>
 
         {/* Current Trip Info */}
         <div className="bg-gray-800 rounded-lg shadow-md border border-gray-700 p-6 mb-8">
