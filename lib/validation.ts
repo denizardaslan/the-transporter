@@ -54,7 +54,7 @@ export function validateDrivingData(jsonString: string): {
       success: true,
       data: result.data,
     };
-  } catch (e) {
+  } catch {
     return {
       success: false,
       error: 'Invalid JSON format',
