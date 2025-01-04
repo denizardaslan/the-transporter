@@ -29,9 +29,9 @@ export function calculateInsights(data: DrivingData): DrivingInsights {
     return {
       driverName: data.driverName,
       tyreType: data.tyreType,
-      carModel: data.carModel,
-      startLocation: data.startLocation,
-      endLocation: data.endLocation,
+      carModel: data.carModel ?? null,
+      startLocation: data.startLocation ?? null,
+      endLocation: data.endLocation ?? null,
       totalDistance: null,
       totalTime: null,
       averageSpeed: null,
@@ -78,9 +78,9 @@ export function calculateInsights(data: DrivingData): DrivingInsights {
   return {
     driverName: data.driverName,
     tyreType: data.tyreType,
-    carModel: data.carModel,
-    startLocation: data.startLocation,
-    endLocation: data.endLocation,
+    carModel: data.carModel ?? null,
+    startLocation: data.startLocation ?? null,
+    endLocation: data.endLocation ?? null,
     totalDistance: Math.round(totalDistance * 100) / 100, // Round to 2 decimal places
     totalTime,
     averageSpeed: Math.round(averageSpeed * 100) / 100,
