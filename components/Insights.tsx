@@ -19,6 +19,10 @@ export default function Insights({ insights }: InsightsProps) {
               <p className="mt-1 text-lg text-gray-200">{insights.driverName || 'Unknown'}</p>
             </div>
             <div>
+              <h3 className="text-sm font-medium text-gray-400">Car Model</h3>
+              <p className="mt-1 text-lg text-gray-200">{insights.carModel || 'Unknown'}</p>
+            </div>
+            <div>
               <h3 className="text-sm font-medium text-gray-400">Tyre Type</h3>
               <p className="mt-1 text-lg text-gray-200">{insights.tyreType || 'Unknown'}</p>
             </div>
@@ -50,22 +54,44 @@ export default function Insights({ insights }: InsightsProps) {
           <p className="mt-1 text-lg text-gray-200">🕑 {formatDuration(insights.totalTime)}</p>
         </div>
         <div>
+          <h3 className="text-sm font-medium text-gray-400">Car Model</h3>
+          <p className="mt-1 text-lg text-gray-200">🚗 {insights.carModel || 'Unknown'}</p>
+        </div>
+
+        {/* Second Row */}
+        {insights.startLocation && (
+          <div>
+            <h3 className="text-sm font-medium text-gray-400">Start Location</h3>
+            <p className="mt-1 text-lg text-gray-200">
+              📍 {insights.startLocation.city}, {insights.startLocation.district}
+            </p>
+          </div>
+        )}
+        <div>
+          <h3 className="text-sm font-medium text-gray-400">Total Distance</h3>
+          <p className="mt-1 text-lg text-gray-200">
+            📏 {insights.totalDistance !== null ? `${insights.totalDistance.toFixed(2)} km` : 'N/A'}
+          </p>
+        </div>
+        <div>
           <h3 className="text-sm font-medium text-gray-400">Average Speed</h3>
           <p className="mt-1 text-lg text-blue-400">
             🚗 {insights.averageSpeed !== null ? `${insights.averageSpeed.toFixed(2)} km/h` : 'N/A'}
           </p>
         </div>
 
-        {/* Second Row */}
+        {/* Third Row */}
+        {insights.endLocation && (
+          <div>
+            <h3 className="text-sm font-medium text-gray-400">End Location</h3>
+            <p className="mt-1 text-lg text-gray-200">
+              🏁 {insights.endLocation.city}, {insights.endLocation.district}
+            </p>
+          </div>
+        )}
         <div>
           <h3 className="text-sm font-medium text-gray-400">Tyre Type</h3>
           <p className="mt-1 text-lg text-gray-200">🛞 {insights.tyreType || 'Unknown'}</p>
-        </div>
-        <div>
-          <h3 className="text-sm font-medium text-gray-400">Total Distance</h3>
-          <p className="mt-1 text-lg text-gray-200">
-            📏 {insights.totalDistance !== null ? `${insights.totalDistance.toFixed(2)} km` : 'N/A'}
-          </p>
         </div>
         <div>
           <h3 className="text-sm font-medium text-gray-400">Maximum Speed</h3>

@@ -3,6 +3,17 @@ import { DrivingData } from './validation';
 export interface DrivingInsights {
   driverName: string | null;
   tyreType: string | null;
+  carModel: string | null;
+  startLocation: {
+    city: string;
+    street: string;
+    district: string;
+  } | null;
+  endLocation: {
+    city: string;
+    street: string;
+    district: string;
+  } | null;
   totalDistance: number | null;
   totalTime: number | null; // in seconds
   averageSpeed: number | null;
@@ -18,6 +29,9 @@ export function calculateInsights(data: DrivingData): DrivingInsights {
     return {
       driverName: data.driverName,
       tyreType: data.tyreType,
+      carModel: data.carModel,
+      startLocation: data.startLocation,
+      endLocation: data.endLocation,
       totalDistance: null,
       totalTime: null,
       averageSpeed: null,
@@ -65,6 +79,9 @@ export function calculateInsights(data: DrivingData): DrivingInsights {
   return {
     driverName: data.driverName,
     tyreType: data.tyreType,
+    carModel: data.carModel,
+    startLocation: data.startLocation,
+    endLocation: data.endLocation,
     totalDistance: Math.round(totalDistance * 100) / 100, // Round to 2 decimal places
     totalTime,
     averageSpeed: Math.round(averageSpeed * 100) / 100,

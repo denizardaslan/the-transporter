@@ -13,6 +13,14 @@ const timestampSchema = z.union([
   return val;
 });
 
+const LocationSchema = z.object({
+  longitude: z.number(),
+  latitude: z.number(),
+  city: z.string(),
+  street: z.string(),
+  district: z.string(),
+});
+
 const DrivingDataPoint = z.object({
   index: z.number().int(),
   timestamp: timestampSchema,
@@ -29,6 +37,9 @@ export const DrivingDataSchema = z.object({
   session_end: timestampSchema.nullable(),
   driverName: z.string().nullable(),
   tyreType: z.enum(['Winter', 'Summer', 'All-Season']).nullable(),
+  carModel: z.string().nullable(),
+  startLocation: LocationSchema.nullable(),
+  endLocation: LocationSchema.nullable(),
   data: z.array(DrivingDataPoint),
 });
 
