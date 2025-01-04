@@ -37,9 +37,9 @@ export const DrivingDataSchema = z.object({
   session_end: timestampSchema.nullable(),
   driverName: z.string().nullable(),
   tyreType: z.enum(['Winter', 'Summer', 'All-Season']).nullable(),
-  carModel: z.string().nullable(),
-  startLocation: LocationSchema.nullable(),
-  endLocation: LocationSchema.nullable(),
+  carModel: z.string().nullable().optional(),
+  startLocation: LocationSchema.nullable().optional(),
+  endLocation: LocationSchema.nullable().optional(),
   data: z.array(DrivingDataPoint),
 });
 
