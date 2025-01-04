@@ -68,8 +68,7 @@ export function calculateInsights(data: DrivingData): DrivingInsights {
   console.log('Total Time (seconds):', totalTime);
 
   // Calculate speeds
-  // Convert speeds from m/s to km/h (multiply by 3.6)
-  const speeds = drivingPoints.map(point => point.speed * 3.6);
+  const speeds = drivingPoints.map(point => point.speed);
   const maxSpeed = Math.max(...speeds);
   const minSpeed = Math.min(...speeds);
   

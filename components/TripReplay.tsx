@@ -62,8 +62,8 @@ export default function TripReplay({ data }: TripReplayProps) {
         const nextPoint = data.data[nextIndex];
 
         // Update speed and distance
-        setCurrentSpeed(nextPoint.speed * 3.6); // Convert to km/h
-        setCurrentDistance(nextPoint.distance / 1000); // Convert to km
+        setCurrentSpeed(nextPoint.speed); // Remove 3.6 multiplication
+        setCurrentDistance(nextPoint.distance / 1000); // Keep km conversion
 
         // Determine speed trend
         setSpeedTrend(
@@ -111,7 +111,7 @@ export default function TripReplay({ data }: TripReplayProps) {
     
     // Update current values
     const point = data.data[newIndex];
-    setCurrentSpeed(point.speed * 3.6);
+    setCurrentSpeed(point.speed);
     setCurrentDistance(point.distance / 1000);
     
     if (newIndex > 0) {
