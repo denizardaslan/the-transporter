@@ -11,9 +11,17 @@ interface FileListProps {
 
 interface FileMetadata {
   driverName: string | null;
-  tyreType: 'Winter' | 'Summer' | 'All-Season' | null;
-  session_start: string;
-  session_end: string | null;
+  carModel: string | null;
+  startLocation: {
+    city: string;
+    district: string;
+    street: string;
+  } | null;
+  endLocation: {
+    city: string;
+    district: string;
+    street: string;
+  } | null;
 }
 
 export default function FileList({ files }: FileListProps) {
@@ -125,8 +133,29 @@ export default function FileList({ files }: FileListProps) {
   return (
     <div className="space-y-4">
       {files.map((file) => {
-        const metadata = file.metadata ? JSON.parse(file.metadata) as FileMetadata : null;
+        let metadata = file.metadata ? JSON.parse(file.metadata) as FileMetadata : null;
+        const fileContent = JSON.parse(file.content);
+        console.log('File metadata:', metadata);
+        console.log('File content:', fileContent);
         const isExpanded = expandedId === file.id;
+
+        // If metadata is missing but data is in the content, update metadata
+        if (fileContent && (!metadata || !metadata.carModel)) {
+          metadata = {
+            driverName: fileContent.driverName,
+            carModel: fileContent.carModel,
+            startLocation: fileContent.startLocation ? {
+              city: fileContent.startLocation.city,
+              district: fileContent.startLocation.district,
+              street: fileContent.startLocation.street
+            } : null,
+            endLocation: fileContent.endLocation ? {
+              city: fileContent.endLocation.city,
+              district: fileContent.endLocation.district,
+              street: fileContent.endLocation.street
+            } : null
+          };
+        }
 
         return (
           <div
@@ -157,11 +186,9 @@ export default function FileList({ files }: FileListProps) {
                 ) : (
                   <h3 className="text-lg font-semibold text-gray-100 truncate">{file.name}</h3>
                 )}
-                {metadata && (
-                  <p className="mt-1 text-sm text-gray-400">
-                    Date: {new Date(metadata.session_start).toLocaleString()}
-                  </p>
-                )}
+                <p className="mt-1 text-sm text-gray-400">
+                  Uploaded: {new Date(file.uploadDate).toLocaleString()}
+                </p>
               </div>
               <div
                 className="ml-4 text-gray-400 hover:text-gray-200"
@@ -178,12 +205,13 @@ export default function FileList({ files }: FileListProps) {
                 {metadata && (
                   <div className="text-sm text-gray-300 space-y-1">
                     <p>Driver: {metadata.driverName || 'Unknown'}</p>
-                    <p>Tyre Type: {metadata.tyreType || 'Unknown'}</p>
-                    <p>Session Start: {new Date(metadata.session_start).toLocaleString()}</p>
-                    {metadata.session_end && (
-                      <p>Session End: {new Date(metadata.session_end).toLocaleString()}</p>
+                    <p>Car Model: {metadata.carModel || 'Unknown'}</p>
+                    {metadata.startLocation && (
+                      <p>Start Location: 📍 {metadata.startLocation.city}, {metadata.startLocation.district}, {metadata.startLocation.street}</p>
                     )}
-                    <p>Uploaded: {new Date(file.uploadDate).toLocaleString()}</p>
+                    {metadata.endLocation && (
+                      <p>End Location: 🏁 {metadata.endLocation.city}, {metadata.endLocation.district}, {metadata.endLocation.street}</p>
+                    )}
                   </div>
                 )}
                 <div className="flex flex-wrap gap-2 mt-3">

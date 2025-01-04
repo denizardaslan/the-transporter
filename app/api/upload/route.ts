@@ -31,14 +31,24 @@ export async function POST(request: NextRequest) {
     }
 
     const data = validation.data as DrivingData;
+    console.log('Uploading file data:', data);
 
     // Store metadata for quick access
     const metadata = JSON.stringify({
       driverName: data.driverName,
-      tyreType: data.tyreType,
-      session_start: data.session_start,
-      session_end: data.session_end,
+      carModel: data.carModel,
+      startLocation: data.startLocation ? {
+        city: data.startLocation.city,
+        district: data.startLocation.district,
+        street: data.startLocation.street
+      } : null,
+      endLocation: data.endLocation ? {
+        city: data.endLocation.city,
+        district: data.endLocation.district,
+        street: data.endLocation.street
+      } : null,
     });
+    console.log('Generated metadata:', JSON.parse(metadata));
 
     const fileId = insertFileData(file.name, content, metadata);
 
