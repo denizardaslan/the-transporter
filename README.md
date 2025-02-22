@@ -1,3 +1,10 @@
+# Demo
+[Visit the Demo](https://the-transporter-inky.vercel.app)
+
+![Transporter UI Demo](/transporter.gif)
+
+**Dashboard data is produced by the Transpoter Telemetry iOS app. See details: [Transpoter Telemetry](https://github.com/denizardaslan/transporter-telemetry)**
+
 # The Transporter - Car Driving Analysis Application
 
 A modern web application that helps users analyze and visualize their car driving data through interactive maps, insights, and trip comparisons.
@@ -114,4 +121,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Next.js team for the amazing framework
 - Leaflet for the mapping capabilities
 - All contributors who help improve this project
+
 # the-transporter-ios
+https://github.com/denizardaslan/transporter-telemetry
