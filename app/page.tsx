@@ -1,6 +1,7 @@
 import { getAllFiles } from '@/lib/db';
 import FileList from '@/components/FileList';
 import FileUpload from '@/components/FileUpload';
+import Link from 'next/link';
 
 export const dynamic = 'force-dynamic';
 
@@ -10,9 +11,18 @@ export default async function Home() {
   return (
     <main className="min-h-screen bg-gray-900 text-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
-        <h1 className="text-4xl font-bold text-red-500 text-center mb-10">
+        <h1 className="text-4xl font-bold text-red-500 text-center mb-4">
           Driving Analytics Dashboard
         </h1>
+        <div className="text-center mb-10">
+          <Link 
+            href="https://denizaa.com/driving-analytics/" 
+            target="_blank" 
+            className="text-gray-300 hover:text-gray-100 transition-colors"
+          >
+            Learn more about this project and the iOS app for data collection →
+          </Link>
+        </div>
         
         <div className="bg-gray-800 shadow-xl rounded-lg overflow-hidden mb-10 border border-gray-700">
           <div className="p-6">
